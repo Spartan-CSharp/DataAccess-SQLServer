@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection.PortableExecutable;
-using System.Xml.Linq;
 
 using DataAccessLibrary;
 using DataAccessLibrary.Models;
@@ -16,7 +14,7 @@ namespace DataAccessConsoleUI
 	{
 		private static IConfiguration _configuration;
 		private static IDataLogic _data;
-		
+
 		private static void Main(string[] args)
 		{
 			InitializeConfiguration();
@@ -245,7 +243,7 @@ namespace DataAccessConsoleUI
 			Console.Write("Is Active (True/False): ");
 			isactive = Console.ReadLine().ToLower();
 
-			output.IsActive = isactive.Length == 0 ? false : (bool)(isactive[0] == 't');
+			output.IsActive = isactive.Length != 0 && isactive[0] == 't';
 
 			Console.WriteLine();
 			bool selectionvalid;
@@ -583,7 +581,7 @@ namespace DataAccessConsoleUI
 			input = Console.ReadLine();
 			if ( !string.IsNullOrWhiteSpace(input) )
 			{
-				person.IsActive = input.Length == 0 ? false : (bool)(input[0] == 't');
+				person.IsActive = input.Length != 0 && input[0] == 't';
 			}
 
 			if ( person.Addresses.Count == 0 )
@@ -626,7 +624,7 @@ namespace DataAccessConsoleUI
 						AddressModel address = person.Addresses.Where(x => x.Id == addressselect).FirstOrDefault();
 						if ( addressvalid && address != null )
 						{
-							person.Addresses.Remove(address);
+							_ = person.Addresses.Remove(address);
 						}
 						else
 						{
@@ -852,7 +850,7 @@ namespace DataAccessConsoleUI
 						AddressModel address = employer.Addresses.Where(x => x.Id == addressselect).FirstOrDefault();
 						if ( addressvalid && address != null )
 						{
-							employer.Addresses.Remove(address);
+							_ = employer.Addresses.Remove(address);
 						}
 						else
 						{

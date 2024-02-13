@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 using DataAccessLibrary.Models;
 using DataAccessLibrary.SQLDataAccess;
@@ -279,7 +278,7 @@ namespace DataAccessLibrary
 					}
 					else
 					{
-						linkedAddresses.Remove(found);
+						_ = linkedAddresses.Remove(found);
 					}
 				}
 			}
@@ -330,7 +329,7 @@ namespace DataAccessLibrary
 					}
 					else
 					{
-						linkedAddresses.Remove(found);
+						_ = linkedAddresses.Remove(found);
 					}
 				}
 			}
